@@ -23,9 +23,24 @@ col.temp.add = function(newTemp, callback){
 		});
 }
 
-col.temp.getLast = function(){
+col.temp.getLast = function(callback){
 
-	MongoClient.connect();
+		MongoClient.connect(url, 
+		function(err, db){
+			if(!err){
+        		var collection = db.collection('temp');
+        		collection.find().sort({timestamp:-1}).toArray(function(error, items) {
+        			if(!error){
+        					return callback(items);
+        				} else {
+        					return callback(false);
+        				}
+        			});
+			} else {
+				return callback(false);
+			}
+		});
+
 }
 
 col.temp.getAll = function(callback){

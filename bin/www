@@ -63,7 +63,9 @@ app.get('/', function (req, res) {
   db.temp.getAll(function(vTemp){
     console.log('getall called');
     console.log(vTemp);
-    res.render('pages/index', {temp:vTemp[0].value})
+    db.temp.getLast(function(vLast){
+      res.render('pages/index', {temp:vTemp, last:vLast})
+    });
   });
   
   // Promise.all([promStatus, promTemp]).then((value) => {

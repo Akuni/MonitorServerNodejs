@@ -17,6 +17,27 @@
             <p>Welcome to templating using EJS</p>
             <%= temp %>
         </div>
+
+        <table class="custom_array">
+            <tr>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Temp
+                </td>
+            </tr>
+            <% vTemp.forEach(function(t) { %>
+                <tr>
+                    <td>
+                        <%= new Date(t.timestamp).toLocaleString() %>
+                    </td>
+                    <td> 
+                        <%= t.value %>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
     </main>
 
     <footer>
