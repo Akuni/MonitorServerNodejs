@@ -2,7 +2,9 @@ var express = require('express');
 var app = express();
 
 // set the view engine to ejs
-app.set('views', __dirname + '/views');
+//app.set('views', __dirname + '/views');
+//app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 var exec = require('child_process').exec;
@@ -41,7 +43,9 @@ app.get('/', function (req, res) {
   
   Promise.all([promStatus, promTemp]).then((value) => {
     var data = { status:value[0], temp:value[1]};
-     res.render('pages/index.js',data);
+    res.render('pages/index',data);
+  }).catch(raison => {
+    res.render('pages/index');
   });
 
 });
