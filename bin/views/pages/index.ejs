@@ -54,7 +54,7 @@ var displayTemp = function (temp) {
             <% 
                 var array;
                 for(var i = 0; i < temp.length ; i++){
-                    array[i] = {label = new Date(temp[i].timestamp).toLocaleString(), y: time[i].value.substring(6,10)};
+                    array[i] = {label: new Date(temp[i].timestamp).toLocaleString(), y: time[i].value.substring(6,10)};
                 }
 
                 var chart = new CanvasJS.Chart("chartContainer", {
@@ -64,7 +64,7 @@ var displayTemp = function (temp) {
                     data: [              
                     {
                         // Change type to "doughnut", "line", "splineArea", etc.
-                        type: "column",
+                        type: "line",
                         dataPoints: array
                     }
                     ]
