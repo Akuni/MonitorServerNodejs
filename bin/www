@@ -1,6 +1,22 @@
 var express = require('express');
 var app = express();
 var promisedEJS = require('promised-ejs');
+var cron = require('node-cron');
+var db = require('./dbmanager');
+
+ 
+cron.schedule('* 5 * * *', function(){
+  console.log('running a task every 5 minutes');
+  exec(cmdTemp, function(error, stdout, stderr) {
+        var newTemp = {value:stdout, timestamp:new Date().getTime()};
+        console.log(html);
+        db.temp.add(newTemp, function(result){
+          if(!result){
+            console.log("couldn't store in the database");
+          }
+        });
+    });
+});
 
 // set the view engine to ejs
 app.set('views', __dirname + '/views');
@@ -16,7 +32,7 @@ var cmdTemp = 'vcgencmd measure_temp';
 var port = 8080;
 
 var promStatus = new Promise((resolve, reject) => {
-    aejs(cmdStatus, function(error, stdout, stderr) {
+    exec(cmdStatus, function(error, stdout, stderr) {
         var html = '<table style="border: 1px solid black"><tr style="border: 1px solid black"><td style="border: 1px solid black"><b> Server </b></td><td style="border: 1px solid black"><b> Status </b></td></tr><tr style="border: 1px solid black"><td style="border: 1px solid black"> Spigot </td><td style="border: 1px solid black">';
         if(stdout.includes('1.11.2')){
             html += '<b style="color:green"> OK </b>';
@@ -44,15 +60,17 @@ app.get('/', function (req, res) {
   //res.send('Hello World!');
   console.log(" in /");
 
-  Promise.all([promStatus, promTemp]).then((value) => {
-    console.log("In promise all");
-    var vStatus = value[0];
-    var vTemp = value[1];
-    var data = { status:vStatus, temp:vTemp};
-    res.render('pages/index',data);
-  }).catch(raison => {
-    res.render('pages/index');
-  });
+  var vTemp = db.temp.getAll();
+  res.render('pages/index', {temp:vTemp})
+  // Promise.all([promStatus, promTemp]).then((value) => {
+  //   console.log("In promise all");
+  //   var vStatus = value[0];
+  //   var vTemp = value[1];
+  //   var data = { status:vStatus, temp:vTemp};
+  //   res.render('pages/index',data);
+  // }).catch(raison => {
+  //   res.render('pages/index');
+  // });
 
 });
 
