@@ -33,7 +33,7 @@ col.temp.getAll = function(){
 		function(err, db){
 			if(!err){
         		var collection = db.collection('temp');
-        		collection.find().toArray(function(err, items) {
+        		collection.find().toArray(function(error, items) {
         			if(!error){
         					return callback(items);
         				} else {
