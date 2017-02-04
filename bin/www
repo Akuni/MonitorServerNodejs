@@ -1,10 +1,13 @@
 var express = require('express');
+var app = express();
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
 var exec = require('child_process').exec;
 var cmdStatus = 'mscs status spigot';
 var cmdTemp = 'vcgencmd measure_temp';
 
-var app = express();
 var port = 8080;
 
 var promStatus = new Promise((resolve, reject) => {
@@ -36,7 +39,9 @@ app.get('/', function (req, res) {
   //res.send('Hello World!');
   
   Promise.all([promStatus, promTemp]).then((value) => {
-     res.send(value[0] + value[1]);
+    var data = { status:value[0], temp:value[1]};
+     res.render('pages/index',data);
+    }
   });
 
 });
