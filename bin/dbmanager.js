@@ -35,13 +35,13 @@ col.temp.getAll = function(){
         		var collection = db.collection('temp');
         		collection.find().toArray(function(error, items) {
         			if(!error){
-        					return callback(items);
+        					return items;
         				} else {
-        					return callback(false);
+        					return false;
         				}
         			});
 			} else {
-				return callback(false);
+				return false;
 			}
 		});
 
