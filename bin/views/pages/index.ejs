@@ -52,9 +52,11 @@ var displayTemp = function (temp) {
                 </td>
             </tr>
             <% 
-                var array;
+                var array = [];
                 for(var i = 0; i < temp.length ; i++){
-                    array[i] = {label: new Date(temp[i].timestamp).toLocaleString(), y: temp[i].value.substring(6,10)};
+                    array[i] = {};
+                    array[i].label =  new Date(temp[i].timestamp).toLocaleString();
+                    array[i].y = templating[i].value.substring(6,10);
                 }
 
                 var chart = new CanvasJS.Chart("chartContainer", {
