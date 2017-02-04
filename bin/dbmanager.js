@@ -9,7 +9,7 @@ col.temp.add = function(newTemp, callback){
 		function(err, db){
 			if(!err){
         		var collection = db.collection('temp');
-        		collection.insertOne(temp,
+        		collection.insertOne(newTemp,
         			function(error, result){
         				if(!error){
         					return callback(result);
