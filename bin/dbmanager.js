@@ -4,7 +4,7 @@ var col = {players:{}, temp:{}, status:{}};
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://nodeserver:nodepass@ds139979.mlab.com:39979/serverinfo";
 
-col.temp.add(newTemp, callback){
+col.temp.add = function(newTemp, callback){
 	MongoClient.connect(url, 
 		function(err, db){
 			if(!err){
@@ -23,12 +23,12 @@ col.temp.add(newTemp, callback){
 		});
 }
 
-col.temp.getLast(){
+col.temp.getLast = function(){
 
 	MongoClient.connect();
 }
 
-col.temp.getAll(){
+col.temp.getAll = function(){
 	MongoClient.connect(url, 
 		function(err, db){
 			if(!err){
