@@ -5,8 +5,8 @@ var cron = require('node-cron');
 var db = require('./dbmanager');
 
  
-var task = cron.schedule('* * * * *', function(){
-  console.log('running a task every 1 minute');
+var task = cron.schedule('*/5 * * * *', function(){
+  console.log('running a task every 5 minutes');
   exec(cmdTemp, function(error, stdout, stderr) {
         var newTemp = {value:stdout, timestamp:new Date().getTime()};
         console.log(newTemp);
