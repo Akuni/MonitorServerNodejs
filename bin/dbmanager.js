@@ -28,20 +28,20 @@ col.temp.getLast = function(){
 	MongoClient.connect();
 }
 
-col.temp.getAll = function(){
+col.temp.getAll = function(callback){
 	MongoClient.connect(url, 
 		function(err, db){
 			if(!err){
         		var collection = db.collection('temp');
         		collection.find().toArray(function(error, items) {
         			if(!error){
-        					return items;
+        					return callback(items);
         				} else {
-        					return false;
+        					return callback(false);
         				}
         			});
 			} else {
-				return false;
+				return callback(false);
 			}
 		});
 

@@ -60,8 +60,10 @@ app.get('/', function (req, res) {
   //res.send('Hello World!');
   console.log(" in /");
 
-  var vTemp = db.temp.getAll();
-  res.render('pages/index', {temp:vTemp})
+  db.temp.getAll(function(vTemp){
+    res.render('pages/index', {temp:vTemp})
+  });
+  
   // Promise.all([promStatus, promTemp]).then((value) => {
   //   console.log("In promise all");
   //   var vStatus = value[0];
