@@ -61,8 +61,8 @@ app.get('/', function (req, res) {
   console.log(" in /");
 
   db.temp.getAll(function(vTemp){
-    console.log('getall called');
-    console.log(vTemp);
+    //console.log('getall called');
+    //console.log(vTemp);
     db.temp.getLast(function(vLast){
       res.render('pages/index', {temp:vTemp, last:vLast})
     });
