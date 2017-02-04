@@ -1,11 +1,14 @@
 var express = require('express');
 var app = express();
+var promisedEJS = require('promised-ejs');
 
 // set the view engine to ejs
 app.set('views', __dirname + '/views');
+
+app.engine('ejs', promisedEJS.__express);
 app.set('view engine', 'ejs');
 
-
+//var aejs = require('async-ejs').add(exec,require('child_process').exec);
 var exec = require('child_process').exec;
 var cmdStatus = 'mscs status spigot';
 var cmdTemp = 'vcgencmd measure_temp';
@@ -13,7 +16,7 @@ var cmdTemp = 'vcgencmd measure_temp';
 var port = 8080;
 
 var promStatus = new Promise((resolve, reject) => {
-    exec(cmdStatus, function(error, stdout, stderr) {
+    aejs(cmdStatus, function(error, stdout, stderr) {
         var html = '<table style="border: 1px solid black"><tr style="border: 1px solid black"><td style="border: 1px solid black"><b> Server </b></td><td style="border: 1px solid black"><b> Status </b></td></tr><tr style="border: 1px solid black"><td style="border: 1px solid black"> Spigot </td><td style="border: 1px solid black">';
         if(stdout.includes('1.11.2')){
             html += '<b style="color:green"> OK </b>';
