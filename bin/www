@@ -42,7 +42,6 @@ app.get('/', function (req, res) {
   Promise.all([promStatus, promTemp]).then((value) => {
     var data = { status:value[0], temp:value[1]};
      res.render('pages/index',data);
-    }
   });
 
 });
