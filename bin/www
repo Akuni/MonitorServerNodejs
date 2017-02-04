@@ -5,6 +5,7 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
 var exec = require('child_process').exec;
 var cmdStatus = 'mscs status spigot';
 var cmdTemp = 'vcgencmd measure_temp';
@@ -38,9 +39,13 @@ var promTemp = new Promise((resolve, reject) => {
 
 app.get('/', function (req, res) {
   //res.send('Hello World!');
-  
+  console.log(" in /");
+
   Promise.all([promStatus, promTemp]).then((value) => {
-    var data = { status:value[0], temp:value[1]};
+    console.log("In promise all");
+    var vStatus = value[0];
+    var vTemp = value[1];
+    var data = { status:vStatus, temp:vTemp};
     res.render('pages/index',data);
   }).catch(raison => {
     res.render('pages/index');
