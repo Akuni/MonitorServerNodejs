@@ -51,7 +51,8 @@ var displayTemp = function (temp) {
                     Temp
                 </td>
             </tr>
-            <% 
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <script>  
                 var array = [];
                 for(var i = 0; i < temp.length ; i++){
                     array[i] = {};
@@ -71,7 +72,8 @@ var displayTemp = function (temp) {
                     }
                     ]
                 });
-                chart.render(); %>
+                chart.render(); 
+                </script>
 
             <% temp.forEach(function(t) { %>
                 <tr>
