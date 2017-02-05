@@ -7,30 +7,7 @@
 </head>
 <body class="container">
 
-<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
-
-var displayTemp = function (temp) {
-    var array;
-    for(var i = 0; i < temp.length ; i++){
-        array[i] = {label = new Date(temp[i].timestamp).toLocaleString(), y: time[i].value.substring(6,10)};
-    }
-
-    var chart = new CanvasJS.Chart("chartContainer", {
-        title:{
-            text: "My First Chart in CanvasJS"              
-        },
-        data: [              
-        {
-            // Change type to "doughnut", "line", "splineArea", etc.
-            type: "column",
-            dataPoints: array
-        }
-        ]
-    });
-    chart.render();
-}
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 
     <header>
         <% include ../partials/header %>
@@ -41,6 +18,25 @@ var displayTemp = function (temp) {
             <h1>This is great</h1>
             <p>Welcome to templating using EJS</p>
         </div>
+        <canvas id="myChart"></canvas>
+        <script type="text/javascript">
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                datasets: [{
+                  label: 'apples',
+                  data: [12, 19, 3, 17, 6, 3, 7],
+                  backgroundColor: "rgba(153,255,51,0.4)"
+                }, {
+                  label: 'oranges',
+                  data: [2, 29, 5, 5, 2, 3, 10],
+                  backgroundColor: "rgba(255,153,0,0.4)"
+                }]
+              }
+            });
+        </script>
 
         <table class="custom_table">
             <tr>
@@ -51,31 +47,6 @@ var displayTemp = function (temp) {
                     Temp
                 </td>
             </tr>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-            <script>  
-                var array = [];
-                for(var i = 0; i < temp.length ; i++){
-                    array[i] = {};
-                    array[i].label =  new Date(temp[i].timestamp).toLocaleString();
-                    array[i].y = templating[i].value.substring(6,10);
-                }
-                window.onload= function(){
-                    var chart = new CanvasJS.Chart("chartContainer", {
-                        title:{
-                            text: "My First Chart in CanvasJS"              
-                        },
-                        data: [              
-                        {
-                            // Change type to "doughnut", "line", "splineArea", etc.
-                            type: "line",
-                            dataPoints: array
-                        }
-                        ]
-                    });
-                    chart.render(); 
-                }
-                </script>
-
             <% temp.forEach(function(t) { %>
                 <tr>
                     <td>
