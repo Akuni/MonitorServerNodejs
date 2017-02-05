@@ -7,7 +7,36 @@
 </head>
 <body class="container">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript">
+    $(function () { 
+        <% var c = temp;%>
+    var myChart = Highcharts.chart('container', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+
+</script>
 
     <header>
         <% include ../partials/header %>
@@ -18,28 +47,6 @@
             <h1>This is great</h1>
             <p>Welcome to templating using EJS</p>
         </div>
-        <canvas id="myChart"></canvas>
-        <script type="text/javascript">
-            var d = [];
-            var l = [];
-            for(var i = 0; i < temp.length ; i++){
-                d[i] = temp[i].value.substring(6,10);
-                l[i] = new Date(temp[i].timestamp).toLocaleString();
-                
-            }
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-                datasets: [{
-                  label: 'Temp',
-                  data: [12, 19, 3, 17, 6, 3, 7],
-                  backgroundColor: "rgba(153,255,51,0.4)"
-                }]
-              }
-            });
-        </script>
 
         <table class="custom_table">
             <tr>
