@@ -6,30 +6,6 @@
 <!-- CSS (load bootstrap from a CDN) -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/main.css">
-<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
-
-var displayTemp = function (temp) {
-	var array;
-	for(var i = 0; i < temp.length ; i++){
-		array[i] = {label = new Date(temp[i].timestamp).toLocaleString(), y: time[i].value.substring(6,10)};
-	}
-
-	var chart = new CanvasJS.Chart("chartContainer", {
-		title:{
-			text: "My First Chart in CanvasJS"              
-		},
-		data: [              
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-			dataPoints: array
-		}
-		]
-	});
-	chart.render();
-}
-</script>
 <style>
     body    { padding-top:50px; }
 </style>

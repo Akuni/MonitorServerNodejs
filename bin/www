@@ -23,7 +23,7 @@ app.set('views', __dirname + '/views');
 
 app.engine('ejs', promisedEJS.__express);
 app.set('view engine', 'ejs');
-
+app.use(express.static(__dirname + '/views'))
 //var aejs = require('async-ejs').add(exec,require('child_process').exec);
 var exec = require('child_process').exec;
 var cmdStatus = 'mscs status spigot';
