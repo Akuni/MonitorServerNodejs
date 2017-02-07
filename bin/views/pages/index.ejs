@@ -20,52 +20,7 @@
             <p>Welcome to templating using EJS</p>
         </div>
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
-        <%  var d = [];
-            var l = [];
-            for(var i = 0; i < temp.length; i++){
-                d[i] = temp[i].value.substring(6,10);
-
-                l[i] = new Date(temp[i].timestamp).toLocaleString();
-            }
-
-            Highcharts.chart('container', {
-            title: {
-                text: 'Temperature every 5 minutes',
-                x: -20 //center
-            },
-            subtitle: {
-                text: 'Source: Raspberry Pi',
-                x: -20
-            },
-            xAxis: {
-                categories: l
-            },
-            yAxis: {
-                title: {
-                    text: 'Temperature (°C)'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            tooltip: {
-                valueSuffix: '°C'
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series: [{
-                name: 'Temperature',
-                data: d
-            }]
-        });
-
-         %>
+        <script> markeChart(<%temp%>); </script>
         <table class="custom_table">
             <tr>
                 <td>
