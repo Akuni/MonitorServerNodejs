@@ -58,6 +58,16 @@
         data: d
     }]
 });
+
+    var showHideData = function(){
+        var div = document.getElementById('data');
+        if (div.style.display !== 'none') {
+            div.style.display = 'none';
+        }
+        else {
+            div.style.display = 'block';
+        }
+    }
 }
 
 </script>
@@ -70,33 +80,47 @@
         <div class="jumbotron">
             <h1>This is great</h1>
             <p>Welcome to templating using EJS</p>
+            <div class="container">
+                <div class="rows">
+                    <div class="col-xs-3 col-xs-offset-9">
+                        <span> Status : <%= status %> </span>
+                        <span> Temp : <%= temp %> </span>
+                        <span> D3 </span>
+                    </div>
+                </div>  
+            </div>
         </div>
+
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-        <script> window.onload = function(){
-            var t =  <%- JSON.stringify(temp) %>;
-            makeChart(t);
-        }  </script>
-        <button onclick="markeChart([<%=temp%>])">Try it</button>
-        <table class="custom_table">
-            <tr>
-                <td>
-                    Date
-                </td>
-                <td>
-                    Temp
-                </td>
-            </tr>
-            <% temp.forEach(function(t) { %>
+        <script> 
+            window.onload = function(){
+                var t =  <%- JSON.stringify(temp) %>;
+                makeChart(t);
+            }  
+        </script>
+        <button onclick="showHideData()">Show data</button>
+        <div id="data">
+            <table class="custom_table">
                 <tr>
                     <td>
-                        <%= new Date(t.timestamp).toLocaleString() %>
+                        Date
                     </td>
-                    <td> 
-                        <%= t.value %>
+                    <td>
+                        Temp
                     </td>
                 </tr>
-            <% }); %>
-        </table>
+                <% temp.forEach(function(t) { %>
+                    <tr>
+                        <td>
+                            <%= new Date(t.timestamp).toLocaleString() %>
+                        </td>
+                        <td> 
+                            <%= t.value %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
     </main>
 
     <footer>

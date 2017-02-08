@@ -1,3 +1,7 @@
 .custom_table, .custom_table > tr, .custom_table > tr > td {
 	border: 1px solid black;
 }
+
+.custom_table, .custom_table tr, .custom_table tr td {
+	border: 1px solid black;
+}

@@ -49,7 +49,7 @@ var promStatus = new Promise((resolve, reject) => {
 var promTemp = new Promise((resolve, reject) => {
     exec(cmdTemp, function(error, stdout, stderr) {
         var html = '<b>' + stdout + '</b>';
-        console.log(html);
+         console.log(html);
         resolve(html);
     });
 });
@@ -59,11 +59,20 @@ var promTemp = new Promise((resolve, reject) => {
 app.get('/', function (req, res) {
   //res.send('Hello World!');
   console.log(" in /");
+  var vStatus;
+  exec(cmdStatus, function(error, stdout, stderr) {
+        if(stdout.includes('1.11.2')){
+            vStatus = "OK";
+        } else {
+            vStatus = "KO";
+        }
+        console.log(vStatus);
+  });
 
   db.temp.getAll(function(vTemp){
     //console.log('getall called');
     db.temp.getLast(function(vLast){
-      res.render('pages/index', {temp:vTemp, last:vLast})
+      res.render('pages/index', {temp:vTemp, last:vLast, status:vStatus});
     });
   });
   
