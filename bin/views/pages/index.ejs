@@ -12,11 +12,13 @@
     var makeChart = function(tempArray) {
     var d = [];
     var l = [];
-    for(var i = 0; i < tempArray.length; i++){
+    for(var i = 0; i < tempArray.length && i < 15; i++){
         d[i] = tempArray[i].value.substring(5,9);
 
         l[i] = new Date(tempArray[i].timestamp).toLocaleString();
+        l[i] = l[i].substring(0, l[i].length - 3);
     }
+    
     console.log("d : " + d);
     console.log("d : " + JSON.stringify(d));
 
