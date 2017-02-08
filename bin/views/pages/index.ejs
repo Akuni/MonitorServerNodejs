@@ -12,7 +12,7 @@
     var makeChart = function(tempArray) {
     var d = [];
     var l = [];
-    for(var i = 0; i < tempArray.length && i < 15; i++){
+    for(var i = 0; i < tempArray.length && i < 30; i++){
         d[i] = parseInt(tempArray[i].value.substring(5,9));
 
         l[i] = new Date(tempArray[i].timestamp).toLocaleString();
