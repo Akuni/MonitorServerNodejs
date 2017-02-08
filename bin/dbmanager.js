@@ -29,9 +29,9 @@ col.temp.getLast = function(callback){
 		function(err, db){
 			if(!err){
         		var collection = db.collection('temp');
-        		collection.find().sort({timestamp:-1}).limit(1).toArray(function(error, items) {
+        		collection.find().sort({timestamp:-1}).toArray(function(error, items) {
         			if(!error){
-        					return callback(items);
+        					return callback(items[0]);
         				} else {
         					return callback(false);
         				}
