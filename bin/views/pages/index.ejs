@@ -70,11 +70,8 @@
         </div>
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         <script> window.onload = function(){
-
-            console.log(JSON.stringify(<% temp %>)); 
-            console.log(JSON.stringify(<%= temp %>)); 
-            console.log(<% temp %>); 
-            var t = [<%=temp%>]; 
+            var t =  <%- JSON.stringify(temp) %>;
+            console.log(t);
             console.log(JSON.stringify(t)); 
             makeChart(t);
         }  </script>
