@@ -62,9 +62,9 @@ app.get('/', function (req, res) {
   var vStatus;
   exec(cmdStatus, function(error, stdout, stderr) {
         if(stdout.includes('1.11.2')){
-            vStatus = "OK";
+            vStatus = {value:"OK", color:"green"};
         } else {
-            vStatus = "KO";
+            vStatus = {value:"KO", color:"red"};
         }
         console.log(vStatus);
   });
