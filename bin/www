@@ -62,7 +62,9 @@ app.get('/', function (req, res) {
 
   db.temp.getAll(function(vTemp){
     //console.log('getall called');
-    //console.log(vTemp);
+    var array = [vtemp];
+    console.log(vTemp);
+    console.log(JSON.parse(vTemp));
     db.temp.getLast(function(vLast){
       res.render('pages/index', {temp:vTemp, last:vLast})
     });
