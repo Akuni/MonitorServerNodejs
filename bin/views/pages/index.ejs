@@ -13,12 +13,12 @@
     var d = [];
     var l = [];
     for(var i = 0; i < tempArray.length && i < 15; i++){
-        d[i] = tempArray[i].value.substring(5,9);
+        d[i] = parseInt(tempArray[i].value.substring(5,9));
 
         l[i] = new Date(tempArray[i].timestamp).toLocaleString();
         l[i] = l[i].substring(0, l[i].length - 3);
     }
-    
+
     console.log("d : " + d);
     console.log("d : " + JSON.stringify(d));
 
@@ -74,8 +74,6 @@
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         <script> window.onload = function(){
             var t =  <%- JSON.stringify(temp) %>;
-            console.log(t);
-            console.log(JSON.stringify(t)); 
             makeChart(t);
         }  </script>
         <button onclick="markeChart([<%=temp%>])">Try it</button>
